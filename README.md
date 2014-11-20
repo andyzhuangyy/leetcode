@@ -1,4 +1,4 @@
-leecode
+leetcode
 =======
 
-leecode exercise
+leetcode exercise
