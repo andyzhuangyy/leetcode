@@ -11,24 +11,12 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-
-
-
-
-bool isSymmetric(TreeNode *root) {
+bool isSameTree(TreeNode *p, TreeNode *q) {
    deque<TreeNode*> left, right;
-
    TreeNode* leftN, *rightN;
-   if (NULL == root)
-       return true;
 
-   //if (NULL == root->left && NULL == root->right)
-       //return true;
-   //else if(NULL == root->left || NULL == root->right)
-       //return false;
-
-   left.push_back(root->left);
-   right.push_back(root->right);
+   left.push_back(p);
+   right.push_back(q);
 
    for ( ; !left.empty() && !right.empty(); ) {
       leftN = left.front();
@@ -37,10 +25,6 @@ bool isSymmetric(TreeNode *root) {
       right.pop_front();
 
       if (NULL == leftN && NULL == rightN) {
-          //left.push_back(NULL);
-          //left.push_back(NULL);
-          //right.push_back(NULL);
-          //right.push_back(NULL);
           continue;
       }
       else if(NULL == leftN || NULL == rightN)
@@ -51,11 +35,15 @@ bool isSymmetric(TreeNode *root) {
       left.push_back(leftN->left);
       left.push_back(leftN->right);
 
-      right.push_back(rightN->right);
       right.push_back(rightN->left);
+      right.push_back(rightN->right);
    }
    return true;
+    
 }
+
+
+
 
 
 int main()
